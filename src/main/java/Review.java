@@ -70,6 +70,7 @@ public class Review {
   /** 
    * returns a string containing all of the text in fileName (including punctuation), 
    * with words separated by a single space 
+   * @param String - the filename of the file to be read in
    */
   public static String textToString( String fileName )
   {  
