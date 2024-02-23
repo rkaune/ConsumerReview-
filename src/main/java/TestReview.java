@@ -12,7 +12,7 @@ public class TestReview
     public static void main(String[] args)
     {
         //Test the sentimentVal method here!
-        double num = Review.sentimentVal("sad");
+        double num = Review.sentimentVal("Gabriel");
         System.out.println(num);
     }
 }
