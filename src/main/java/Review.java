@@ -171,4 +171,72 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  /**
+   * This method should return the total sentiment value of a review based on an input review
+   * @param fileName
+   * @return 
+   */
+  public static double totalSentiment(String fileName)
+  {
+    String reviewText = textToString(fileName);
+    int len = reviewText.length();
+    int index = 0;
+    double sum = 0.0;
+    String currentWord = "";
+    while( index < len )
+    {
+      if( index == len-1 )
+      {
+        currentWord += reviewText.substring(index, index+1);
+        currentWord = removePunctuation(currentWord);
+
+        sum += sentimentVal(currentWord);
+      }
+      else if( !(reviewText.substring(index, index+1).equals(" ")))
+      {
+        currentWord += reviewText.substring(index, index+1);
+      }
+      else
+      {
+        currentWord = removePunctuation(currentWord);
+
+        sum += sentimentVal(currentWord);
+        currentWord = "";
+      }
+      index++;
+    }//end while
+    return sum;
+  }
+  
+  /**
+   * Method to determine the star rating of a review found in the text file provided
+   * by the parameter.
+   * 
+   * @param fileName - the name of the file containing the review
+   * @return the star rating of the review, which is an integer value between 0 and 4
+   */
+  public static int starRating(String fileName)
+  {
+    double totalSentiment = totalSentiment(fileName);
+    if( totalSentiment < -10 )
+    {
+      return 0;
+    }
+    else if( totalSentiment < 0 )
+    {
+      return 1;
+    }
+    else if( totalSentiment < 10 )
+    {
+      return 2;
+    }
+    else if( totalSentiment < 20 )
+    {
+      return 3;
+    }
+    else
+    {
+      return 4;
+    }
+  }
 }
